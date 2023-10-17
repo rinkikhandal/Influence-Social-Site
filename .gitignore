@@ -3,3 +3,4 @@
 /server/public
 .vscode
 /server/errorLogs
+/server/dist

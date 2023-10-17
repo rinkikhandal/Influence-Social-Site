@@ -9,9 +9,8 @@
   "scripts": {
     "start": "node src/index.js",
     "build": "webpack --config webpack.config.js --mode=production",
-    "dev": "webpack --config webpack.config.js --mode=development -w "
+    "dev": "webpack --config webpack.dev.js --mode=development -w "
   },
-  
   "devDependencies": {
     "@babel/core": "7.16.0",
     "@babel/preset-env": "7.16.4",
