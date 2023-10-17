@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Young+Serif&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@800;900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* common-classes */
+  body {
+    @apply max-w-[100%] font-poppins;
+  }
+  .grid-class {
+    @apply grid place-items-center h-full;
+  }
+  .text-custom {
+    background-image: linear-gradient(
+      to right,
+      rgb(0, 128, 70),
+      #354f52,
+      #008046
+    ) !important; /* Replace these color values with your desired gradient */
+    color: transparent !important;
+    display: inline-block;
+    -webkit-background-clip: text; /* For Safari/Chrome */
+    background-clip: text;
+    /* height: 42px; */
+  }
+  /* end of common classes */
+
+  .front-page-container {
+    @apply max-h-screen xl:px-32 grid w-screen;
+  }
+
+  .for-width {
+    @apply lg:grid-cols-5 grid lg:justify-center lg:gap-x-10  mt-24 h-[520px] place-items-center w-full justify-self-center;
+  }
+
+  /* register page */
+  .form-container {
+    @apply bg-white border-neutral-300 border w-[370px] px-10 py-4 rounded-lg max-h-[520px] lg:col-start-4 lg:col-end-5;
+  }
+
+  .logo {
+    @apply text-primary-dark capitalize text-5xl font-lobster text-center  pb-4;
+  }
+  .register-form {
+    @apply mt-6 mb-4;
+  }
+  .inp-div {
+    @apply mb-3 flex flex-col;
+  }
+  .label-class {
+    @apply text-primary-green-2 mb-1 font-normal;
+  }
+  .inp-class {
+    @apply rounded bg-neutral-100 border border-neutral-200 outline-none caret-secondary-green-1  tracking-wider;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    @apply w-full px-4 py-2   text-sm;
+  }
+
+  input[type="text"] {
+    @apply capitalize;
+  }
+
+  .btn {
+    @apply bg-primary-green-2 text-white w-full rounded-lg py-2 mt-5  hover:bg-primary-green-1 transition-all tracking-wide;
+  }
+  .login-text {
+    @apply text-xs text-center;
+  }
+  /* end of register page */
+  /* side-pics CSS */
+  .side-pics {
+    @apply hidden lg:block w-[500px] overflow-hidden h-full relative lg:col-start-1 lg:col-end-4;
+  }
+
+  .pic-1 {
+    @apply w-[300px]  h-[200px]  top-[200px] -left-20 z-30 border-[#af4d1c];
+  }
+
+  .pic-2 {
+    @apply h-[300px] w-[400px]  right-10 top-[220px] z-10 object-cover border-purple-800;
+  }
+  .pic-3 {
+    @apply h-[300px] w-[600px] top-[0px] -left-[100px] z-20  border-cyan-600;
+  }
+  .pic {
+    @apply absolute rounded-lg border-4;
+  }
+
+  .moto {
+    @apply absolute z-40  -ml-6 text-[43px] uppercase tracking-tighter font-black  w-full top-[220px] h-28 grid leading-none place-items-center text-center text-black mix-blend-screen bg-gradient-to-r from-white via-login-gradient to-white;
+  }
+
+  /* footer */
+  .footer {
+    @apply text-xs md:text-sm text-neutral-600  mt-20 h-5 py-4 grid place-items-center  grid-cols-2 border-t-neutral-200 border-t w-[95%] justify-self-center;
+  }
+
+  .copy-right {
+    @apply text-neutral-500 font-thin;
+  }
+  .icons {
+    @apply flex;
+  }
+  .size {
+    @apply mx-2 scale-125 text-primary-dark;
+  }
+
+  .message-class {
+    @apply text-primary-dark drop-shadow-sm text-sm  mt-5  rounded py-1 px-2;
+  }
+  /* page not found */
+  .page-not-class {
+    @apply h-screen relative w-full grid place-items-center;
+  }
+
+  .link-shadow {
+    @apply bg-primary-green-1 hover:bg-primary-dark transition-all;
+    box-shadow: 0px 0.5px 10px 2px #e4f6da;
+  }
+
+  /* ====dashboard===== */
+  /* navbar */
+  header {
+    @apply h-[70px] fixed top-0 left-0 right-0 z-40 bg-white shadow-lg grid items-center justify-center px-2 md:px-5 md:grid-cols-header-grid-md sm:grid-cols-header-grid-sm lg:grid-cols-header-grid-lg xl:px-20;
+  }
+  nav {
+    @apply hidden sm:grid sm:grid-cols-nav-grid h-full;
+  }
+
+  .create-btn {
+    @apply flex items-center justify-self-end text-lg  text-primary-dark font-medium  rounded-lg tracking-wider transition-all h-10  cursor-pointer hover:text-primary-green-2;
+  }
+
+  /* hover:bg-primary-dark 
+  bg-primary-green-2 */
+
+  .nav-hover {
+    @apply absolute top-[65px]  rounded-lg w-32 -left-4  text-center bg-white text-black z-10 border px-2 py-1;
+  }
+
+  .dash-li {
+    @apply list-none my-2 py-1  hover:bg-neutral-200 cursor-pointer rounded-md;
+  }
+
+  .dash-footer {
+    @apply fixed h-16 shadow-inner border-t bottom-0 w-full text-center grid items-center grid-cols-3 px-4 z-10 sm:hidden bg-white;
+  }
+  .profile {
+    @apply h-9 w-9 rounded-full grid place-items-center  text-sm cursor-pointer  bg-primary-green-1  hover:bg-primary-dark text-white justify-self-start transition-all uppercase;
+  }
+  .dash-icons {
+    @apply h-7 w-7 justify-self-center cursor-pointer text-primary-green-1 hover:text-primary-dark transition-all;
+  }
+
+  /* create post  */
+  .heading {
+    @apply text-3xl font-bold mt-5 text-primary-dark  md:text-center;
+  }
+
+  .inp-create {
+    @apply rounded bg-neutral-100 border border-neutral-200 outline-none caret-secondary-green-1  tracking-wider mt-1;
+  }
+
+  textarea {
+    @apply inp-create mt-1 w-full text-sm px-4 py-2;
+  }
+  .inp-file {
+    @apply text-sm;
+  }
+
+  .upload {
+    @apply mt-1 flex items-center justify-center gap-x-1 py-2 bg-primary-dark hover:bg-primary-green-1 transition-all w-24  rounded-lg cursor-pointer tracking-wide;
+  }
+  /* post show */
+  .overlay {
+    @apply fixed h-screen w-full  bg-black bg-opacity-80 z-[100] flex  justify-center top-0 left-0 overflow-y-auto backdrop-blur-lg px-4 pb-10 pt-16;
+  }
+
+  .edit {
+    @apply flex ml-5 items-center font-medium hover:bg-tertiary-green-1 py-1 px-3 rounded-2xl border border-secondary-green-1 text-xs hover:border-tertiary-green-1 transition-all text-primary-dark cursor-pointer;
+  }
+
+  .des-text {
+    @apply text-sm  rounded-lg tracking-wide  leading-6 py-2 md:py-0 w-full;
+  }
+  .border-b-neutral-custom {
+    border-bottom-color: rgb(192, 191, 191);
+  }
+}
