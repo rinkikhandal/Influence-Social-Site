@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node server.js",
     "build": "webpack --config webpack.config.js --mode=production",
-    "dev": "webpack --config webpack.dev.js --mode=development -w "
+    "dev": "webpack --config webpack.dev.js --mode=development -w ",
+    "prod": "node ./public/bundle.js"
   },
   "devDependencies": {
     "@babel/core": "7.16.0",
