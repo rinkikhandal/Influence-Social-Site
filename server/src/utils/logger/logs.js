@@ -22,14 +22,7 @@ const getLogLevel = () => {
   return isDevelopment ? "debug" : "warn";
 };
 
-// Use a relative path for the log file
-const logDir = path.join(process.cwd(), "errorLogs"); // process.cwd() returns the current working directory
-const loggerFile = path.join(logDir, "error.log");
-
-// Ensure the log directory exists
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir);
-}
+const loggerFile = "/tmp/errorLogs/error.log";
 
 const colors = {
   error: "red",
@@ -52,13 +45,14 @@ const logger = winston.createLogger({
   level: getLogLevel(),
   levels: logLevels,
   format: logFormat,
-  transports: [new winston.transports.Console()],
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({
+      filename: loggerFile,
+      level: "error",
+    }),
+  ],
 });
-
-// new winston.transports.File({
-//       filename: loggerFile,
-//       level: "error",
-//     }),
 
 export const morganMiddleware = morgan(
   ":method :url :status - :response-time ms",
