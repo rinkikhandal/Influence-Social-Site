@@ -2,6 +2,7 @@ import morgan from "morgan";
 import winston from "winston";
 import path from "path";
 import dotenv from "dotenv";
+import fs from "fs";
 
 dotenv.config(path.join(path.resolve(), ".env"));
 
@@ -24,6 +25,11 @@ const getLogLevel = () => {
 // Use a relative path for the log file
 const logDir = path.join(process.cwd(), "errorLogs"); // process.cwd() returns the current working directory
 const loggerFile = path.join(logDir, "error.log");
+
+// Ensure the log directory exists
+if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir);
+}
 
 const colors = {
   error: "red",
