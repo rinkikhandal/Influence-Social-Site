@@ -37,4 +37,7 @@ module.exports = {
   },
   devtool: "source-map",
   plugins: [new NodemonPlugin()],
+  externals: {
+    axios: "axios",
+  },
 };
