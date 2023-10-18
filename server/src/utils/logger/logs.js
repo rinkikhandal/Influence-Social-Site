@@ -21,7 +21,9 @@ const getLogLevel = () => {
   return isDevelopment ? "debug" : "warn";
 };
 
-const loggerFile = path.join(path.resolve(), "errorLogs", "error.log");
+// Use a relative path for the log file
+const logDir = path.join(process.cwd(), "errorLogs"); // process.cwd() returns the current working directory
+const loggerFile = path.join(logDir, "error.log");
 
 const colors = {
   error: "red",
