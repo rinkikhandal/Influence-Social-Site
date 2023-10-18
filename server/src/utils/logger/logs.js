@@ -52,14 +52,13 @@ const logger = winston.createLogger({
   level: getLogLevel(),
   levels: logLevels,
   format: logFormat,
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({
-      filename: loggerFile,
-      level: "error",
-    }),
-  ],
+  transports: [new winston.transports.Console()],
 });
+
+// new winston.transports.File({
+//       filename: loggerFile,
+//       level: "error",
+//     }),
 
 export const morganMiddleware = morgan(
   ":method :url :status - :response-time ms",
