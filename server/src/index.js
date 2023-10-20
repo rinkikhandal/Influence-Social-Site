@@ -25,7 +25,10 @@ app.use(express.json());
 app.use(express.static("../public"));
 // app.use(express.urlencoded({ extended: true }));
 
-const allowedOrigins = ["https://influence-social-site-front-end.onrender.com"];
+const allowedOrigins = [
+  "https://influence-social-site-front-end.onrender.com",
+  "http://localhost:5173",
+];
 
 const corsOptions = {
   origin: function (origin, callback) {

@@ -4,8 +4,10 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "Influence-social-site", // Optional: specify a folder in your Cloudinary account
-  public_id: (req, file) => file.originalname,
+  params: {
+    folder: "Influence-social-site", // Optional: specify a folder in your Cloudinary account
+    public_id: (req, file) => file.originalname.split(".")[0],
+  },
 });
 
 const upload = multer({

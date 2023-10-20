@@ -166,6 +166,8 @@ const uploadImage = (imageFile) => {
     throw new BadRequest("please upload image less than 1MB");
   }
 
+  console.log(imageFile);
+
   return { image: imageFile.path };
 };
 
