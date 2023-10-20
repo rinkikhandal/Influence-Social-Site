@@ -16,7 +16,7 @@ const addPost = async (req, res) => {
 
   const { image } = uploadImage(imageFile);
   console.log(image);
-  const imagePath = `https://influence-social-site-front-end.onrender.com${image}`;
+  const imagePath = `https://influence-social-site-backend.onrender.com${image}`;
 
   const post = await Post.create({
     ...req.body,
@@ -68,7 +68,7 @@ const updatePost = async (req, res) => {
   if (file) {
     const imageFile = file;
     const { image } = uploadImage(imageFile);
-    const imagePath = `https://influence-social-site-front-end.onrender.com${image}`;
+    const imagePath = `https://influence-social-site-backend.onrender.com${image}`;
 
     toBeUpdated = { image: imagePath };
   }
