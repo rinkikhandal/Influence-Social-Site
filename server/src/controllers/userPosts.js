@@ -178,6 +178,7 @@ const uploadImage = (imageFile) => {
   }
 
   const imagePath = imageFile.path;
+  console.log(imageFile.path);
   return { image: imagePath };
 };
 
