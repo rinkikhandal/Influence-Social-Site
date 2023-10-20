@@ -177,7 +177,11 @@ const uploadImage = (imageFile) => {
     throw new BadRequest("please upload image less than 1MB");
   }
 
-  const imagePath = path.join("/uploads/", imageFile.originalname);
+  const imagePath = path.join(
+    path.resolve(),
+    "/public/uploads/",
+    imageFile.originalname
+  );
   return { image: imagePath };
 };
 
