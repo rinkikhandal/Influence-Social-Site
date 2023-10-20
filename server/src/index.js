@@ -24,6 +24,11 @@ app.use(cors());
 app.use(morganMiddleware);
 
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("hello");
+});
+
 // app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/auth", authRoutes);
@@ -39,10 +44,6 @@ app.use("/api/post", postRoutes);
 app.use("/api/posts", generalPostRoutes);
 
 app.use("/api/comment", commentRoutes);
-
-app.get("/", (req, res) => {
-  res.send("hello");
-});
 
 app.use(errorHandeler);
 
