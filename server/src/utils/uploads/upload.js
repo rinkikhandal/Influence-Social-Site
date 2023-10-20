@@ -1,5 +1,14 @@
 import multer from "multer";
-const storage = multer.memoryStorage();
+import path from "path";
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(path.resolve(), "public/uploads"));
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
 
 const upload = multer({
   storage,

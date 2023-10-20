@@ -2,7 +2,7 @@ import { validationResult } from "express-validator";
 import { StatusCodes } from "http-status-codes";
 import Post from "../models/post";
 import { BadRequest, NotFound } from "../errors";
-import axios from "axios";
+import path from "path";
 
 const addPost = async (req, res) => {
   const { id } = req.user;
@@ -11,28 +11,16 @@ const addPost = async (req, res) => {
 
   // console.log(req.file);
   const imageFile = req.file;
+  // console.log(imageFile);
   // Extract the file name from the originalname property
-  const fileName = imageFile.originalname;
-  // console.log(fileName);
-  const fileData = imageFile.buffer;
-  // console.log(fileData);
 
-  const uploadIoResponse = await axios.post(
-    `https://api.upload.io/v2/accounts/${process.env.UPLOAD_IO_ACCOUNT_ID}/uploads/binary`,
-    fileData,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.UPLOAD_IO_API_KEY}`,
-        // "Content-Type": "application/octet-stream",
-        // "Content-Disposition": `filename=${encodeURIComponent(fileName)}`,
-      },
-    }
-  );
-  console.log(uploadIoResponse.data.fileUrl);
+  const { image } = uploadImage(imageFile);
+  console.log(image);
+  const imagePath = `https://influence-social-site-front-end.onrender.com${image}`;
 
   const post = await Post.create({
     ...req.body,
-    image: uploadIoResponse.data.fileUrl,
+    image: imagePath,
     user: id,
   });
 
@@ -79,23 +67,10 @@ const updatePost = async (req, res) => {
 
   if (file) {
     const imageFile = file;
-    const fileData = imageFile.buffer;
-    // Extract the file name from the originalname property
-    const fileName = imageFile.originalname;
-    // console.log(fileData);
+    const { image } = uploadImage(imageFile);
+    const imagePath = `https://influence-social-site-front-end.onrender.com${image}`;
 
-    const uploadIoResponse = await axios.post(
-      `https://api.upload.io/v2/accounts/${process.env.UPLOAD_IO_ACCOUNT_ID}/uploads/binary`,
-      fileData,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.UPLOAD_IO_API_KEY}`,
-          // "Content-Type": "application/octet-stream",
-          // "Content-Disposition": `filename=${encodeURIComponent(fileName)}`,
-        },
-      }
-    );
-    toBeUpdated = { image: uploadIoResponse.data.fileUrl };
+    toBeUpdated = { image: imagePath };
   }
   // console.log(uploadIoResponse.data.fileUrl);
 
@@ -188,6 +163,22 @@ const unLikePost = async (req, res) => {
     message: "successfully unLiked post",
     data: post.likes,
   });
+};
+
+const uploadImage = (imageFile) => {
+  if (!imageFile) {
+    throw new BadRequest("No File Uploaded");
+  }
+  if (imageFile.mimetype !== "image/jpeg") {
+    throw new BadRequest("no image file");
+  }
+  const maxSize = 1024 * 1024;
+  if (imageFile.size > maxSize) {
+    throw new BadRequest("please upload image less than 1MB");
+  }
+
+  const imagePath = path.join("/uploads/", imageFile.originalname);
+  return { image: imagePath };
 };
 
 export { addPost, updatePost, deletePost, likePost, unLikePost, getPost };

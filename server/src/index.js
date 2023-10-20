@@ -29,9 +29,13 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+// app.use(cors());
+
 app.use(morganMiddleware);
 
 app.use(express.json());
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send("hello");
