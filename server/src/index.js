@@ -14,7 +14,13 @@ import errorHandeler from "./middlewares/errorHandeler.js";
 import { morganMiddleware } from "./utils/logger/logs.js";
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://influence-social-site-front-end.onrender.com/",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    credentials: true,
+  })
+);
 // {
 //     origin: "https://influence-social-site-backend.vercel.app/",
 //     methods: ["GET", "POST", "PATCH", "DELETE"],
