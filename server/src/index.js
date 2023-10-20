@@ -15,7 +15,7 @@ import { morganMiddleware } from "./utils/logger/logs.js";
 
 const app = express();
 app.use(express.json());
-app.use(express.static("../public"));
+app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: true }));
 
 const allowedOrigins = ["https://influence-social-site-front-end.onrender.com"];

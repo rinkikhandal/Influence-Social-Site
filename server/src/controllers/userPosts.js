@@ -15,7 +15,7 @@ const addPost = async (req, res) => {
   // Extract the file name from the originalname property
 
   const { image } = uploadImage(imageFile);
-  // console.log(image);
+  console.log(image);
   // const imagePath = `https://influence-social-site-backend.onrender.com${image}`;
 
   const post = await Post.create({

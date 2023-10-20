@@ -74,6 +74,7 @@ const CreatePost = () => {
     };
     filereader.readAsDataURL(file);
   };
+
   // updating Post
   const handleUpdateSubmit = async (e) => {
     try {
@@ -248,7 +249,7 @@ const CreatePost = () => {
                     See Preview
                   </span>
                   <span className="text-sm text-primary-green-2">
-                    &ensp;- {postId ? title + ".jpg" : image.name}
+                    &ensp;- {image.name}
                   </span>
                 </div>
               ) : (
