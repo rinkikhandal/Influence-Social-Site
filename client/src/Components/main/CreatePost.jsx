@@ -20,6 +20,7 @@ const CreatePost = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [creatingPost, setCreatingPost] = useState(null);
   const [openPreview, setOpenPreview] = useState(null);
+  const [editImageName, setEditImageName] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,7 +50,9 @@ const CreatePost = () => {
       const post = resPost.data;
       setTitle(post.title);
       setDescription(post.description);
-
+      const imageUrlArray = post.image.split("/");
+      const imageName = imageUrlArray[imageUrlArray.length - 1];
+      setEditImageName(imageName);
       //  Fetch the image URL
       const res = await axios.get(post.image, { responseType: "arraybuffer" });
       // Convert image data to Blob
@@ -249,7 +252,7 @@ const CreatePost = () => {
                     See Preview
                   </span>
                   <span className="text-sm text-primary-green-2">
-                    &ensp;- {image.name}
+                    &ensp;- {editImageName ? editImageName : image.name}
                   </span>
                 </div>
               ) : (
