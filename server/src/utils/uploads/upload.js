@@ -1,13 +1,11 @@
 import multer from "multer";
-import path from "path";
+import { v2 as cloudinary } from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "/uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: "Influence-social-site", // Optional: specify a folder in your Cloudinary account
+  public_id: (req, file) => file.originalname,
 });
 
 const upload = multer({

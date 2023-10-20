@@ -12,6 +12,13 @@ import commentRoutes from "./routers/comments.js";
 
 import errorHandeler from "./middlewares/errorHandeler.js";
 import { morganMiddleware } from "./utils/logger/logs.js";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_SECRET_KEY,
+});
 
 const app = express();
 app.use(express.json());

@@ -7,16 +7,10 @@ import path from "path";
 const addPost = async (req, res) => {
   const { id } = req.user;
 
-  // console.log(req.body, req.file);
-
-  // console.log(req.file);
   const imageFile = req.file;
-  // console.log(imageFile);
-  // Extract the file name from the originalname property
 
   const { image } = uploadImage(imageFile);
   console.log(image);
-  // const imagePath = `https://influence-social-site-backend.onrender.com${image}`;
 
   const post = await Post.create({
     ...req.body,
@@ -68,11 +62,8 @@ const updatePost = async (req, res) => {
   if (file) {
     const imageFile = file;
     const { image } = uploadImage(imageFile);
-    // const imagePath = `https://influence-social-site-backend.onrender.com${image}`;
-
     toBeUpdated = { image };
   }
-  // console.log(uploadIoResponse.data.fileUrl);
 
   const post = await Post.findOneAndUpdate(
     {
@@ -83,12 +74,9 @@ const updatePost = async (req, res) => {
     { ...req.body, ...toBeUpdated },
     { new: true, runValidators: true }
   );
-  // .select("_id image title description likes")
   if (!post) {
     throw new NotFound("post not found");
   }
-
-  // console.log("from backend", post);
 
   return res.status(StatusCodes.OK).json({
     success: true,
@@ -165,6 +153,7 @@ const unLikePost = async (req, res) => {
   });
 };
 
+// upload image functionality
 const uploadImage = (imageFile) => {
   if (!imageFile) {
     throw new BadRequest("No File Uploaded");
@@ -177,9 +166,7 @@ const uploadImage = (imageFile) => {
     throw new BadRequest("please upload image less than 1MB");
   }
 
-  const imagePath = imageFile.path;
-  console.log(imageFile.path);
-  return { image: imagePath };
+  return { image: imageFile.path };
 };
 
 export { addPost, updatePost, deletePost, likePost, unLikePost, getPost };
