@@ -35,15 +35,13 @@ app.use("/api/auth", authRoutes);
 
 // applied on the below routes
 
-app.use(authenticateUser);
+app.use("/api/user", authenticateUser, userRoutes);
 
-app.use("/api/user", userRoutes);
+app.use("/api/post", authenticateUser, postRoutes);
 
-app.use("/api/post", postRoutes);
+app.use("/api/posts", authenticateUser, generalPostRoutes);
 
-app.use("/api/posts", generalPostRoutes);
-
-app.use("/api/comment", commentRoutes);
+app.use("/api/comment", authenticateUser, commentRoutes);
 
 app.use(errorHandeler);
 
