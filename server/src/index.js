@@ -21,11 +21,6 @@ app.use(
     credentials: true,
   })
 );
-// {
-//     origin: "https://influence-social-site-backend.vercel.app/",
-//     methods: ["GET", "POST", "PATCH", "DELETE"],
-//     credentials: true,
-//   }
 
 app.use(morganMiddleware);
 
