@@ -179,7 +179,7 @@ const uploadImage = (imageFile) => {
 
   const imagePath = path.join(
     path.resolve(),
-    "/public/uploads/",
+    "public/uploads/",
     imageFile.originalname
   );
   return { image: imagePath };
