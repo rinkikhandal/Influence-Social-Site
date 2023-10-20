@@ -15,12 +15,12 @@ const addPost = async (req, res) => {
   // Extract the file name from the originalname property
 
   const { image } = uploadImage(imageFile);
-  console.log(image);
-  const imagePath = `https://influence-social-site-backend.onrender.com${image}`;
+  // console.log(image);
+  // const imagePath = `https://influence-social-site-backend.onrender.com${image}`;
 
   const post = await Post.create({
     ...req.body,
-    image: imagePath,
+    image,
     user: id,
   });
 
@@ -68,9 +68,9 @@ const updatePost = async (req, res) => {
   if (file) {
     const imageFile = file;
     const { image } = uploadImage(imageFile);
-    const imagePath = `https://influence-social-site-backend.onrender.com${image}`;
+    // const imagePath = `https://influence-social-site-backend.onrender.com${image}`;
 
-    toBeUpdated = { image: imagePath };
+    toBeUpdated = { image };
   }
   // console.log(uploadIoResponse.data.fileUrl);
 
