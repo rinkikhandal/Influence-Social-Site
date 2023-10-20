@@ -14,6 +14,10 @@ import errorHandeler from "./middlewares/errorHandeler.js";
 import { morganMiddleware } from "./utils/logger/logs.js";
 
 const app = express();
+app.use(express.json());
+app.use(express.static("../public"));
+app.use(express.urlencoded({ extended: true }));
+
 const allowedOrigins = ["https://influence-social-site-front-end.onrender.com"];
 
 const corsOptions = {
@@ -24,7 +28,7 @@ const corsOptions = {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true, // If you need to include cookies in your requests
+  credentials: true, // If need to include cookies in your requests
 };
 
 app.use(cors(corsOptions));
@@ -33,15 +37,9 @@ app.use(cors(corsOptions));
 
 app.use(morganMiddleware);
 
-app.use(express.json());
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
-
 app.get("/", (req, res) => {
   res.send("hello");
 });
-
-// app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/auth", authRoutes);
 
