@@ -9,10 +9,10 @@ const HoverDiv = () => {
       </Link>
       <p className="h-0 !important w-full border"></p>
       <Link>
-        <li className="dash-li">Profile</li>
+        <li className="dash-li cursor-no-drop">Profile</li>
       </Link>
       <Link>
-        <li className="dash-li">Account</li>
+        <li className="dash-li cursor-no-drop">Account</li>
       </Link>
       <Link to="/logout">
         <li className="dash-li">Log Out</li>

@@ -32,7 +32,7 @@ const Header = () => {
           <div className='border w-0 h-10 border-neutral-300 justify-self-end -mr-8'></div>
         </div> */}
         <div className="relative  grid-class [&:hover>ul]:visible ">
-          <p className="profile  h-12 w-12 text-lg bg-neutral-600 hover:bg-primary-green-2  justify-self-end">
+          <p className="profile  h-12 w-12 text-lg bg-neutral-600 hover:bg-primary-green-2  justify-self-end ">
             {user?.initials.toUpperCase()}
           </p>
           {<HoverDiv />}
