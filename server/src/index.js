@@ -25,6 +25,7 @@ app.use(express.json());
 app.use(express.static("../public"));
 // app.use(express.urlencoded({ extended: true }));
 
+// ========= when building ============
 const allowedOrigins = [
   "https://influence-social-site-front-end.onrender.com",
   "http://localhost:5173",
@@ -41,6 +42,7 @@ const corsOptions = {
   credentials: true, // If need to include cookies in your requests
 };
 
+// ========= when building ============
 app.use(cors(corsOptions));
 
 // app.use(cors());
