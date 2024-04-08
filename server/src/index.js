@@ -43,9 +43,9 @@ const corsOptions = {
 };
 
 // ========= when building ============
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
-// app.use(cors());
+app.use(cors());
 
 app.use(morganMiddleware);
 

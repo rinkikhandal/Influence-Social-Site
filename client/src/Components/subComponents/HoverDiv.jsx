@@ -8,8 +8,8 @@ const HoverDiv = () => {
         <li className="dash-li">Dashboard</li>
       </Link>
       <p className="h-0 !important w-full border"></p>
-      <Link>
-        <li className="dash-li cursor-no-drop">Profile</li>
+      <Link to="/profile">
+        <li className="dash-li ">Profile</li>
       </Link>
       <Link>
         <li className="dash-li cursor-no-drop">Account</li>

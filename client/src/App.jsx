@@ -12,6 +12,7 @@ import Spinner from "./Components/subComponents/Spinner";
 import CreatePost from "./Components/main/CreatePost";
 import Logout from "./Components/auth/Logout";
 import UserProfile from "./Components/main/UserProfile";
+import OwnerAccount from "./Components/main/ownerAccount";
 // import UpdatePost from "./Components/main/UpdatePost";
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
             {/* <Route path="/edit-post" element={<UpdatePost />} /> */}
             <Route path="/user/:userId" element={<UserProfile />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/profile" element={<OwnerAccount />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </>
