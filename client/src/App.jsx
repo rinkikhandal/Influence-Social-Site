@@ -12,7 +12,7 @@ import Spinner from "./Components/subComponents/Spinner";
 import CreatePost from "./Components/main/CreatePost";
 import Logout from "./Components/auth/Logout";
 import UserProfile from "./Components/main/UserProfile";
-import OwnerAccount from "./Components/main/ownerAccount";
+import OwnerAccount from "./Components/main/OwnerAccount";
 // import UpdatePost from "./Components/main/UpdatePost";
 
 const App = () => {
