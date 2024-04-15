@@ -5,8 +5,8 @@ import Posts from "../subComponents/Posts";
 import {
   unFollowUser,
   followUser,
-  // getFollowers,
-  // getFollowings,
+  getFollowers,
+  getFollowings,
 } from "../../redux/actions/user";
 import { BsCheck2 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,15 +17,43 @@ import Footer from "../subComponents/Footer";
 const OwnerAccount = () => {
   const { user } = useSelector((state) => state.auth);
   const { allPosts } = useSelector((state) => state.post);
+  const { otherUserFollowers, otherUserFollowings } = useSelector(
+    (state) => state.otherUser
+  );
+
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+
+  const [followers, setFollowers] = useState(null);
+  const [followings, setFollowings] = useState(null);
 
   const [show, setShow] = useState(null);
 
   const dispatch = useDispatch();
 
+  const getUserFollowers = (user) => {
+    dispatch(getFollowers(user._id));
+  };
+
+  const getUserFollowings = (user) => {
+    dispatch(getFollowings(user._id));
+  };
+
   useEffect(() => {
-    console.log(allPosts.filter((post) => post.user._id === user._id));
-  }, [user, allPosts]);
+    getUserFollowers(user);
+    getUserFollowings(user);
+  }, [user._id]);
+
+  useEffect(() => {
+    if (otherUserFollowers) {
+      setFollowers(otherUserFollowers);
+    }
+  }, [otherUserFollowers]);
+
+  useEffect(() => {
+    if (otherUserFollowings) {
+      setFollowings(otherUserFollowings);
+    }
+  }, [otherUserFollowings]);
 
   useEffect(() => {
     if (isOverlayOpen) {
@@ -47,20 +75,18 @@ const OwnerAccount = () => {
       dispatch(followUser(id));
     }
   };
-  // const getUserFollowers = (userId) => {
-  //   dispatch(getFollowers(userId));
-  //   if (user.followers) {
-  //     setShow(["followers", user.followers]);
-  //     setIsOverlayOpen(true);
-  //   }
-  // };
-  // const getUserFollowings = (userId) => {
-  //   dispatch(getFollowings(userId));
-  //   if (user.following) {
-  //     setShow(["following", user.following]);
-  //     setIsOverlayOpen(true);
-  //   }
-  // };
+
+  const showFollowers = () => {
+    console.log(followers);
+    setShow(["followers", followers]);
+    setIsOverlayOpen(true);
+  };
+
+  const showFollowings = () => {
+    console.log(followings);
+    setShow(["followings", followings]);
+    setIsOverlayOpen(true);
+  };
 
   const handleShowClose = () => {
     setIsOverlayOpen(false);
@@ -93,14 +119,14 @@ const OwnerAccount = () => {
           <div className="flex mb-8 ml-2 text-sm">
             <button
               className="mr-3 hover:text-primary-green-2"
-              onClick={() => user.followers}
+              onClick={showFollowers}
             >
               {user.followers.length}
               <span className="ml-1 hover:underline ">followers</span>
             </button>
             <button
               className=" hover:text-primary-green-2"
-              onClick={() => user.following}
+              onClick={showFollowings}
             >
               {user.following.length}
               <span className="ml-1 hover:underline  ">following</span>
