@@ -7,16 +7,8 @@ import PropTypes from "prop-types";
 
 const Posts = ({ posts }) => {
   const { user } = useSelector((state) => state.auth);
-  // const [imageText, setImageText] = useState([false, null]);
   const [showPost, setShowPost] = useState(null);
   const dispatch = useDispatch();
-
-  // const handleImageTextEnter = (id) => {
-  //   setImageText([true, id]);
-  // };
-  // const handleImageTextLeave = (id) => {
-  //   setImageText([false, id]);
-  // };
 
   const handleLikeClick = (e, post) => {
     const {
@@ -27,7 +19,6 @@ const Posts = ({ posts }) => {
     if (userId === user._id) return;
 
     if (likes.includes(user._id)) {
-      // console.log(likes);
       dispatch(unLikePosts(postId));
     } else {
       dispatch(likePosts(postId));
@@ -42,7 +33,7 @@ const Posts = ({ posts }) => {
     const singlePost = posts.find((post) => post._id === id);
     setShowPost(singlePost);
   };
-
+  //==== to close the post when clicked outside of post====
   const handleClickOnOverlay = (e) => {
     const isShowComponent = e.target.closest(".main-show-component");
     if (isShowComponent) return;

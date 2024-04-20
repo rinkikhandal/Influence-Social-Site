@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
-import { RxCross2 } from "react-icons/rx";
 import Posts from "../subComponents/Posts";
 import {
   unFollowUser,
@@ -14,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../subComponents/Header";
 import Footer from "../subComponents/Footer";
+import Follow from "../subComponents/Follow";
 
 const UserProfile = () => {
   const { user } = useSelector((state) => state.auth);
@@ -143,48 +143,12 @@ const UserProfile = () => {
 
       <Footer />
       <Outlet />
-      {show && show[1].length > 0 && (
-        <div className="overlay ">
-          <div className="bg-neutral-200 max-w-md w-[90%] px-4 pt-4 rounded-lg relative h-fit ">
-            <h1 className="mb-8 capitalize font-semibold text-primary-dark text-xl">
-              {show[0]}
-            </h1>
-            {show[1].map((person) => {
-              return (
-                <div key={person._id}>
-                  <button className="absolute top-2 right-4 bg-tertiary-green-1 rounded-full p-2 cursor-pointer">
-                    <RxCross2 onClick={handleShowClose} className="h-5 w-5 " />
-                  </button>
-                  <div className="flex items-center mb-4 justify-between ">
-                    <div className="flex items-center">
-                      <span className="profile md:h-10 md:w-10 text-md cursor-default hover:bg-primary-green-1 ">
-                        {person.initials}
-                      </span>
-                      <p className="ml-2 capitalize text-lg  font-medium">
-                        {person._id === user._id ? "You" : person.fullName}
-                      </p>
-                    </div>
-                    {person._id !== user._id && (
-                      <button
-                        className="edit"
-                        onClick={() => handleFollowUser(person._id)}
-                      >
-                        {user.following.includes(person._id) ? (
-                          <>
-                            <BsCheck2 /> <span className="ml-1">following</span>
-                          </>
-                        ) : (
-                          "follow"
-                        )}
-                      </button>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+      <Follow
+        show={show}
+        handleFollowUser={handleFollowUser}
+        user={user}
+        handleShowClose={handleShowClose}
+      />
     </>
   );
 };
