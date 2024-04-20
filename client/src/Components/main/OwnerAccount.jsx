@@ -12,10 +12,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../subComponents/Header";
 import Footer from "../subComponents/Footer";
 import Follow from "../subComponents/Follow";
+import { UPDATE_USER_POSTS } from "../../redux/actions/actionVariables";
 
 const OwnerAccount = () => {
   const { user } = useSelector((state) => state.auth);
-  const { allPosts } = useSelector((state) => state.post);
+  const { userPosts } = useSelector((state) => state.post);
   const { otherUserFollowers, otherUserFollowings } = useSelector(
     (state) => state.otherUser
   );
@@ -25,7 +26,7 @@ const OwnerAccount = () => {
   const [followers, setFollowers] = useState(null);
   const [followings, setFollowings] = useState(null);
 
-  const [show, setShow] = useState(null);
+  const [show, setShow] = useState();
 
   const dispatch = useDispatch();
 
@@ -37,7 +38,12 @@ const OwnerAccount = () => {
     dispatch(getFollowings(user._id));
   };
 
+  const fetchOwnerPosts = (user) => {
+    dispatch({ type: UPDATE_USER_POSTS, payload: { userId: user._id } });
+  };
+
   useEffect(() => {
+    fetchOwnerPosts(user);
     getUserFollowers(user);
     getUserFollowings(user);
   }, [user.followers, user.followings, user]);
@@ -76,13 +82,11 @@ const OwnerAccount = () => {
   };
 
   const showFollowers = () => {
-    console.log(followers);
     setShow(["followers", followers]);
     setIsOverlayOpen(true);
   };
 
   const showFollowings = () => {
-    console.log(followings);
     setShow(["followings", followings]);
     setIsOverlayOpen(true);
   };
@@ -132,9 +136,7 @@ const OwnerAccount = () => {
             </button>
           </div>
           <div className="main-body-dash w-full columns-1 xl:columns-4 lg:columns-3  sm:columns-2 gap-y-4 gap-x-4  mb-20">
-            <Posts
-              posts={allPosts.filter((post) => post.user._id === user._id)}
-            />
+            <Posts posts={userPosts} />
           </div>
         </div>
       )}

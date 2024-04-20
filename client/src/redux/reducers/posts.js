@@ -2,10 +2,12 @@ import {
   GET_POSTS,
   UPDATE_LIKED_POSTS,
   UPDATE_POST,
+  UPDATE_USER_POSTS,
 } from "../actions/actionVariables";
 
 const initialState = {
   allPosts: [],
+  userPosts: [],
 };
 
 const postReducer = (state = initialState, action) => {
@@ -31,6 +33,14 @@ const postReducer = (state = initialState, action) => {
           post._id === payload.id ? { ...post, ...payload.updatedPost } : post
         ),
       };
+    case UPDATE_USER_POSTS:
+      return {
+        ...state,
+        userPosts: state.allPosts
+          ? state.allPosts.filter((post) => post.user._id === payload.userId)
+          : [],
+      };
+
     default:
       return state;
   }

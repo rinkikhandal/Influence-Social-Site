@@ -12,6 +12,7 @@ const initialState = {
   user: null,
   loggedIn: null,
   loading: true,
+  posts: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -47,6 +48,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         user: { ...state.user, following: payload },
       };
+
     case LOADING:
       return {
         ...state,
