@@ -9,15 +9,25 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const handlePlusClick = () => navigate("/create-post");
+  const handleProfileClick = () => navigate("/profile");
+  const handleHomeClick = () => navigate("/dashboard");
 
   return (
-    <footer className='dash-footer'>
-      <ImHome className=' justify-self-end dash-icons' />
+    <footer className="dash-footer">
+      {/* =======for dashboard=====  */}
+      <ImHome
+        className=" justify-self-end dash-icons"
+        onClick={handleHomeClick}
+      />
+      {/* =======for creating post====== */}
       <BsPlusSquare
-        className=' justify-self-center dash-icons'
+        className=" justify-self-center dash-icons"
         onClick={handlePlusClick}
       />
-      <h1 className='profile'>{user?.initials}</h1>
+      {/* for profile */}
+      <h1 className="profile" onClick={handleProfileClick}>
+        {user?.initials}
+      </h1>
     </footer>
   );
 };
