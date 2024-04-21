@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams, useNavigate } from "react-router-dom";
 import Posts from "../subComponents/Posts";
 import {
   unFollowUser,
@@ -17,6 +17,7 @@ import Follow from "../subComponents/Follow";
 
 const UserProfile = () => {
   const { user } = useSelector((state) => state.auth);
+  const { loggedIn } = useSelector((state) => state.auth);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   const { otherUser, otherUserFollowers, otherUserFollowings } = useSelector(
@@ -26,9 +27,13 @@ const UserProfile = () => {
   const [show, setShow] = useState(null);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { userId } = useParams();
   useEffect(() => {
+    if (!loggedIn) {
+      navigate("/");
+    }
     fetchUser(userId);
   }, []);
 

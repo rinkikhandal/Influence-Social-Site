@@ -18,6 +18,8 @@ import { getUserPosts } from "../../redux/actions/posts";
 const OwnerAccount = () => {
   const { user } = useSelector((state) => state.auth);
   const { userPosts } = useSelector((state) => state.post);
+  const { loggedIn } = useSelector((state) => state.auth);
+
   const { otherUserFollowers, otherUserFollowings } = useSelector(
     (state) => state.otherUser
   );
@@ -30,6 +32,8 @@ const OwnerAccount = () => {
   const [show, setShow] = useState();
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const getUserFollowers = (user) => {
     dispatch(getFollowers(user._id));
@@ -44,6 +48,9 @@ const OwnerAccount = () => {
   };
 
   useEffect(() => {
+    if (!loggedIn) {
+      navigate("/");
+    }
     fetchOwnerPosts(user);
     getUserFollowers(user);
     getUserFollowings(user);
