@@ -9,7 +9,7 @@ import {
   deletePost,
   likePost,
   unLikePost,
-  getPost,
+  getUserPosts,
 } from "../controllers/userPosts.js";
 
 router
@@ -22,13 +22,13 @@ router
       ),
     upload.single("image"),
     addPost
-  );
+  )
+  .get(getUserPosts);
 
 router
   .route("/:id")
   .patch(upload.single("image"), updatePost)
-  .delete(deletePost)
-  .get(getPost);
+  .delete(deletePost);
 
 router.route("/like/:postId").get(likePost);
 router.route("/unlike/:postId").get(unLikePost);

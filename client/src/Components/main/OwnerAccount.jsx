@@ -12,7 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../subComponents/Header";
 import Footer from "../subComponents/Footer";
 import Follow from "../subComponents/Follow";
-import { UPDATE_USER_POSTS } from "../../redux/actions/actionVariables";
+
+import { getUserPosts } from "../../redux/actions/posts";
 
 const OwnerAccount = () => {
   const { user } = useSelector((state) => state.auth);
@@ -38,8 +39,8 @@ const OwnerAccount = () => {
     dispatch(getFollowings(user._id));
   };
 
-  const fetchOwnerPosts = (user) => {
-    dispatch({ type: UPDATE_USER_POSTS, payload: { userId: user._id } });
+  const fetchOwnerPosts = () => {
+    dispatch(getUserPosts());
   };
 
   useEffect(() => {

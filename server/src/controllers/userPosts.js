@@ -25,26 +25,39 @@ const addPost = async (req, res) => {
   });
 };
 
-const getPost = async (req, res) => {
+const getUserPosts = async (req, res) => {
   const {
-    params: { id: postId },
     user: { id: userId },
   } = req;
 
-  const post = await Post.findOne({
-    _id: postId,
+  let posts = await Post.find({
     user: userId,
     deleted: false,
-  }).select("_id image title description likes");
+  })
+    .select("_id user title description image likes ")
+    .populate("user")
+    .sort({ "likes.num": -1 });
 
-  if (!post) {
-    throw new NotFound("post not found");
-  }
+  posts = posts.map((post) => {
+    if (post.user) {
+      return {
+        ...post.toObject(),
+        user: {
+          _id: post.user._id,
+          fullName: post.user.fullName,
+          initials: post.user.initials,
+        },
+      };
+    } else {
+      post.user = "deleted account";
+      return post;
+    }
+  });
 
   return res.status(StatusCodes.OK).json({
     success: true,
     message: "",
-    data: post,
+    data: posts,
   });
 };
 
@@ -171,4 +184,4 @@ const uploadImage = (imageFile) => {
   return { image: imageFile.path };
 };
 
-export { addPost, updatePost, deletePost, likePost, unLikePost, getPost };
+export { addPost, updatePost, deletePost, likePost, unLikePost, getUserPosts };

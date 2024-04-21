@@ -36,9 +36,7 @@ const postReducer = (state = initialState, action) => {
     case UPDATE_USER_POSTS:
       return {
         ...state,
-        userPosts: state.allPosts
-          ? state.allPosts.filter((post) => post.user._id === payload.userId)
-          : [],
+        userPosts: payload,
       };
 
     default:

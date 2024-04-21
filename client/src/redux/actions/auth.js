@@ -5,7 +5,6 @@ import {
   LOAD_USER,
   UPDATE_AUTH_STATE,
   LOADING,
-  GET_POSTS,
 } from "./actionVariables";
 
 export const loginUser = (data) => {
@@ -81,12 +80,6 @@ export const loadUser = () => async (dispatch) => {
     dispatch({
       type: LOAD_USER,
       payload: { user, token },
-    });
-    // ===getting all posts=====
-    const resPost = await axiosInstance("/posts");
-    dispatch({
-      type: GET_POSTS,
-      payload: resPost.data,
     });
   } catch (error) {
     localStorage.removeItem("token");
