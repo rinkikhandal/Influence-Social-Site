@@ -61,6 +61,27 @@ const getUserPosts = async (req, res) => {
   });
 };
 
+const getPost = async (req, res) => {
+  const {
+    params: { id: postId },
+    user: { id: userId },
+    file,
+  } = req;
+
+  let post = await Post.findOne({
+    _id: postId,
+    user: userId,
+
+    deleted: false,
+  }).select("_id user title description image likes ");
+
+  return res.status(200).json({
+    success: true,
+    message: "",
+    data: post,
+  });
+};
+
 const updatePost = async (req, res) => {
   const {
     params: { id: postId },
@@ -184,4 +205,12 @@ const uploadImage = (imageFile) => {
   return { image: imageFile.path };
 };
 
-export { addPost, updatePost, deletePost, likePost, unLikePost, getUserPosts };
+export {
+  addPost,
+  updatePost,
+  deletePost,
+  likePost,
+  unLikePost,
+  getUserPosts,
+  getPost,
+};

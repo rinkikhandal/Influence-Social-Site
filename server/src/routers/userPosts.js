@@ -10,6 +10,7 @@ import {
   likePost,
   unLikePost,
   getUserPosts,
+  getPost,
 } from "../controllers/userPosts.js";
 
 router
@@ -27,6 +28,7 @@ router
 
 router
   .route("/:id")
+  .get(getPost)
   .patch(upload.single("image"), updatePost)
   .delete(deletePost);
 
