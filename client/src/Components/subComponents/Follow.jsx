@@ -3,12 +3,24 @@ import { BsCheck2 } from "react-icons/bs";
 
 import PropTypes from "prop-types";
 
-const Follow = ({ show, user, handleFollowUser, handleShowClose }) => {
+const Follow = ({
+  show,
+  user,
+  handleFollowUser,
+  handleShowClose,
+  handleUserProfile,
+}) => {
+  const handleClickOnOverlay = (e) => {
+    const isShowComponent = e.target.closest(".main-show-component");
+    if (isShowComponent) return;
+    handleShowClose();
+  };
+
   return (
     <div>
       {show && show[1].length > 0 && (
-        <div className="overlay ">
-          <div className="bg-neutral-200 max-w-md w-[90%] px-4 pt-4 rounded-lg relative h-fit ">
+        <div className="overlay " onClick={handleClickOnOverlay}>
+          <div className=".main-show-component bg-neutral-200 max-w-md w-[90%] px-4 pt-4 rounded-lg relative h-fit ">
             <h1 className="mb-8 capitalize font-semibold text-primary-dark text-xl">
               {show[0]}
             </h1>
@@ -20,7 +32,14 @@ const Follow = ({ show, user, handleFollowUser, handleShowClose }) => {
                   </button>
                   <div className="flex items-center mb-4 justify-between ">
                     <div className="flex items-center">
-                      <span className="profile md:h-10 md:w-10 text-md cursor-default hover:bg-primary-green-1 ">
+                      <span
+                        className="profile md:h-10 md:w-10 text-md cursor-default hover:bg-primary-green-1 "
+                        onClick={
+                          person._id === user._id
+                            ? null
+                            : () => handleUserProfile(person._id)
+                        }
+                      >
                         {person.initials}
                       </span>
                       <p className="ml-2 capitalize text-lg  font-medium">
@@ -57,6 +76,7 @@ Follow.propTypes = {
   user: PropTypes.object.isRequired,
   handleFollowUser: PropTypes.func.isRequired,
   handleShowClose: PropTypes.func.isRequired,
+  handleUserProfile: PropTypes.func.isRequired,
 };
 
 export default Follow;
