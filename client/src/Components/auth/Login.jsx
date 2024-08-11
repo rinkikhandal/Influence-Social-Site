@@ -64,10 +64,8 @@ const Login = ({ setComponent }) => {
             />
           </div>
         </div>
-        <Link
-          to="/forgot-password"
-          className="text-xs mt-5 text-secondary-green-1"
-        >
+        {/* /forgot-password */}
+        <Link to="#" className="text-xs mt-5 text-secondary-green-1">
           forgot password ?
         </Link>
         <button type="submit " className="btn mt-2 ">
