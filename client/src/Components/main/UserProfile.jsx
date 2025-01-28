@@ -30,6 +30,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
 
   const { userId } = useParams();
+
   useEffect(() => {
     if (!loggedIn) {
       navigate("/");
@@ -76,7 +77,9 @@ const UserProfile = () => {
     }
   };
 
-  const handleShowClose = () => {
+  const handleShowClose = (e) => {
+    const isShowComponent = e.target.closest(".FollowShowComponent");
+    if (isShowComponent) return;
     setIsOverlayOpen(false);
     setShow(null);
   };

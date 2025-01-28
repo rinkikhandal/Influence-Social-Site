@@ -15,7 +15,7 @@
 @layer components {
   /* common-classes */
   body {
-    @apply max-w-[100%] font-poppins;
+    @apply max-w-[100%] font-poppins min-h-[100vh];
   }
   .grid-class {
     @apply grid place-items-center h-full;
@@ -33,10 +33,29 @@
     background-clip: text;
     /* height: 42px; */
   }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: green;
+    border-radius: 0.5rem;
+    margin-block: 2px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #013c01;
+    border-radius: 0.5rem;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #095309;
+  }
+
   /* end of common classes */
 
   .front-page-container {
-    @apply max-h-screen xl:px-32 grid w-screen;
+    @apply w-[100%] xl:px-32 grid;
+    height: 100vh !important;
   }
 
   .for-width {
@@ -45,7 +64,7 @@
 
   /* register page */
   .form-container {
-    @apply bg-white border-neutral-300 border w-[370px] px-10 py-4 rounded-lg max-h-[520px] lg:col-start-4 lg:col-end-5;
+    @apply relative bg-white border-neutral-300 border w-[370px] px-10 py-4 rounded-lg max-h-[520px] lg:col-start-4 lg:col-end-5;
   }
 
   .logo {
@@ -110,7 +129,7 @@
 
   /* footer */
   .footer {
-    @apply text-xs md:text-sm text-neutral-600  mt-20 h-5 py-4 grid place-items-center  grid-cols-2 border-t-neutral-200 border-t w-[95%] justify-self-center;
+    @apply text-xs md:text-sm text-neutral-600  h-5 py-4 grid place-items-center  grid-cols-2 border-t-neutral-200 border-t w-[95%] justify-self-center;
   }
 
   .copy-right {
