@@ -10,6 +10,6 @@ const connectDB = async (URI) => {
   } catch (error) {
     logger.error(error);
   }
-};
+};  
 
 export default connectDB;

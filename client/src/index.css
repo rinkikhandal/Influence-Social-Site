@@ -35,20 +35,21 @@
   }
 
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
   }
   ::-webkit-scrollbar-track {
-    background: green;
+    background: #087948;
     border-radius: 0.5rem;
     margin-block: 2px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #013c01;
+    background: #003421;
     border-radius: 0.5rem;
+    border: 3px solid #087948;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #095309;
+    background: #014c41;
   }
 
   /* end of common classes */
